@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Regalado & Co. — AI Practice · LATAM</title>
-<meta name="description" content="Regalado & Co. — práctica independiente de inteligencia artificial aplicada. Talleres in-company, consultoría e implementación de LLMs, RAG y agentes para empresas en Latinoamérica.">
+<title data-es="Regalado & Co. — AI Practice · LATAM" data-en="Regalado & Co. — AI Practice · LATAM">Regalado & Co. — AI Practice · LATAM</title>
+<meta name="description" id="meta-desc" content="Regalado & Co. — práctica independiente de inteligencia artificial aplicada. Talleres in-company, consultoría e implementación de LLMs, RAG y agentes para empresas en Latinoamérica.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -49,9 +49,30 @@
   }
   .brand { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
   .brand-dot { display: inline-block; width: 6px; height: 6px; background: var(--accent); margin: 0 8px 1px 8px; vertical-align: middle; }
-  .header-nav { display: flex; gap: 32px; }
+  .header-nav { display: flex; gap: 32px; align-items: baseline; }
   .header-nav a { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-  @media (max-width: 720px) { .header-nav a:not(.contact-link) { display: none; } }
+
+  /* LANG TOGGLE */
+  .lang-toggle {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
+    padding-left: 24px; margin-left: 8px;
+    border-left: 1px solid var(--rule-soft);
+  }
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font: inherit; letter-spacing: inherit; text-transform: inherit;
+    color: var(--ink-faint); padding: 2px 0;
+    transition: color 0.15s ease;
+  }
+  .lang-btn:hover { color: var(--ink); }
+  .lang-btn.active { color: var(--ink); border-bottom: 1.5px solid var(--accent); }
+  .lang-sep { color: var(--ink-faint); }
+  @media (max-width: 720px) {
+    .header-nav a:not(.contact-link) { display: none; }
+    .lang-toggle { padding-left: 16px; margin-left: 0; }
+  }
 
   /* HERO */
   .hero { padding: 120px 0 80px; border-bottom: 1px solid var(--rule); }
@@ -179,31 +200,36 @@
   <div class="header-inner">
     <div class="brand">Regalado<span class="brand-dot"></span>Co.</div>
     <nav class="header-nav">
-      <a href="#practica">Práctica</a>
-      <a href="#estudio">Estudio</a>
-      <a href="#contacto" class="contact-link">Contacto</a>
+      <a href="#practica" data-es="Práctica" data-en="Practice">Práctica</a>
+      <a href="#estudio" data-es="Estudio" data-en="Studio">Estudio</a>
+      <a href="#contacto" class="contact-link" data-es="Contacto" data-en="Contact">Contacto</a>
+      <span class="lang-toggle">
+        <button class="lang-btn" data-lang="es">ES</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </span>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="container hero-grid">
-    <div class="mono hero-label">001 / Índice</div>
+    <div class="mono hero-label" data-es="001 / Índice" data-en="001 / Index">001 / Índice</div>
     <div>
-      <h1>Inteligencia<br>artificial aplicada,<br><em>sin teatro.</em></h1>
-      <p class="hero-sub">Práctica independiente que ayuda a empresas en Latinoamérica a implementar LLMs, RAG y agentes en operaciones reales — no demos, no pilotos eternos, no PowerPoints.</p>
+      <h1 data-es="Inteligencia<br>artificial aplicada,<br><em>sin teatro.</em>" data-en="Applied artificial<br>intelligence,<br><em>without the theater.</em>">Inteligencia<br>artificial aplicada,<br><em>sin teatro.</em></h1>
+      <p class="hero-sub" data-es="Práctica independiente que ayuda a empresas en Latinoamérica a implementar LLMs, RAG y agentes en operaciones reales — no demos, no pilotos eternos, no PowerPoints." data-en="Independent practice helping companies across Latin America deploy LLMs, RAG and agents in real operations — no demos, no endless pilots, no slide decks.">Práctica independiente que ayuda a empresas en Latinoamérica a implementar LLMs, RAG y agentes en operaciones reales — no demos, no pilotos eternos, no PowerPoints.</p>
       <div class="hero-meta">
         <div class="meta-item">
-          <span class="mono meta-label">Fundado</span>
+          <span class="mono meta-label" data-es="Fundado" data-en="Founded">Fundado</span>
           <span class="meta-value">2026 — Miami, FL</span>
         </div>
         <div class="meta-item">
-          <span class="mono meta-label">Mercado</span>
-          <span class="meta-value">LATAM · Centroamérica</span>
+          <span class="mono meta-label" data-es="Mercado" data-en="Market">Mercado</span>
+          <span class="meta-value" data-es="LATAM · Centroamérica" data-en="Latin America · Central America">LATAM · Centroamérica</span>
         </div>
         <div class="meta-item">
-          <span class="mono meta-label">Idiomas</span>
-          <span class="meta-value">Español · Inglés</span>
+          <span class="mono meta-label" data-es="Idiomas" data-en="Languages">Idiomas</span>
+          <span class="meta-value" data-es="Español · Inglés" data-en="Spanish · English">Español · Inglés</span>
         </div>
       </div>
     </div>
@@ -212,26 +238,26 @@
 
 <section id="practica">
   <div class="container section-grid">
-    <div class="mono section-label">002 / Práctica</div>
+    <div class="mono section-label" data-es="002 / Práctica" data-en="002 / Practice">002 / Práctica</div>
     <div>
-      <h2 class="section-title">Tres formas de <em>trabajar juntos.</em></h2>
+      <h2 class="section-title" data-es="Tres formas de <em>trabajar juntos.</em>" data-en="Three ways to <em>work together.</em>">Tres formas de <em>trabajar juntos.</em></h2>
 
       <div class="service">
         <div class="service-num">— 01</div>
-        <div class="service-name">Talleres <em>in&#8209;company</em></div>
-        <div class="service-desc">Formación práctica para equipos técnicos y de negocio. De prompt engineering aplicado a arquitecturas RAG en producción. Duración: 1 a 3 días, en sus oficinas.</div>
+        <div class="service-name" data-es="Talleres <em>in&#8209;company</em>" data-en="In&#8209;company <em>workshops</em>">Talleres <em>in&#8209;company</em></div>
+        <div class="service-desc" data-es="Formación práctica para equipos técnicos y de negocio. De prompt engineering aplicado a arquitecturas RAG en producción. Duración: 1 a 3 días, en sus oficinas." data-en="Hands-on training for technical and business teams. From applied prompt engineering to production RAG architectures. Length: 1 to 3 days, at your offices.">Formación práctica para equipos técnicos y de negocio. De prompt engineering aplicado a arquitecturas RAG en producción. Duración: 1 a 3 días, en sus oficinas.</div>
       </div>
 
       <div class="service">
         <div class="service-num">— 02</div>
-        <div class="service-name">Consultoría <em>estratégica</em></div>
-        <div class="service-desc">Diagnóstico de oportunidades de IA en sus procesos. Priorización por ROI, no por novedad. Entrega un roadmap ejecutable de 90 días con métricas claras.</div>
+        <div class="service-name" data-es="Consultoría <em>estratégica</em>" data-en="Strategic <em>consulting</em>">Consultoría <em>estratégica</em></div>
+        <div class="service-desc" data-es="Diagnóstico de oportunidades de IA en sus procesos. Priorización por ROI, no por novedad. Entrega un roadmap ejecutable de 90 días con métricas claras." data-en="Diagnosis of AI opportunities across your processes. Prioritization by ROI, not by novelty. Delivers an executable 90-day roadmap with clear metrics.">Diagnóstico de oportunidades de IA en sus procesos. Priorización por ROI, no por novedad. Entrega un roadmap ejecutable de 90 días con métricas claras.</div>
       </div>
 
       <div class="service">
         <div class="service-num">— 03</div>
-        <div class="service-name">Implementación <em>técnica</em></div>
-        <div class="service-desc">Construcción de soluciones a medida: pipelines RAG, agentes verticales, integraciones con su stack. Código suyo, sin lock-in. Entrega en semanas, no trimestres.</div>
+        <div class="service-name" data-es="Implementación <em>técnica</em>" data-en="Technical <em>implementation</em>">Implementación <em>técnica</em></div>
+        <div class="service-desc" data-es="Construcción de soluciones a medida: pipelines RAG, agentes verticales, integraciones con su stack. Código suyo, sin lock-in. Entrega en semanas, no trimestres." data-en="Custom-built solutions: RAG pipelines, vertical agents, integrations with your stack. Your code, no lock-in. Delivered in weeks, not quarters.">Construcción de soluciones a medida: pipelines RAG, agentes verticales, integraciones con su stack. Código suyo, sin lock-in. Entrega en semanas, no trimestres.</div>
       </div>
     </div>
   </div>
@@ -239,20 +265,20 @@
 
 <section id="estudio">
   <div class="container section-grid">
-    <div class="mono section-label">003 / Estudio</div>
+    <div class="mono section-label" data-es="003 / Estudio" data-en="003 / Studio">003 / Estudio</div>
     <div>
-      <h2 class="section-title">Un estudio, <em>no una agencia.</em></h2>
+      <h2 class="section-title" data-es="Un estudio, <em>no una agencia.</em>" data-en="A studio, <em>not an agency.</em>">Un estudio, <em>no una agencia.</em></h2>
       <div class="about-body">
-        <p>Regalado & Co. es una práctica independiente dirigida por <em>Daniel Regalado</em> — Máster en Business Analytics por la Universidad de Miami, con foco en investigación aplicada de modelos de lenguaje y arquitecturas Mixture-of-Experts.</p>
-        <p>Trabajamos con un número limitado de clientes por trimestre. Sin equipos junior, sin subcontratación, sin handoffs. Quien diagnostica es quien implementa.</p>
+        <p data-es="Regalado & Co. es una práctica independiente dirigida por <em>Daniel Regalado</em> — Máster en Business Analytics por la Universidad de Miami, con foco en investigación aplicada de modelos de lenguaje y arquitecturas Mixture-of-Experts." data-en="Regalado & Co. is an independent practice led by <em>Daniel Regalado</em> — M.S. in Business Analytics from the University of Miami, focused on applied research in language models and Mixture-of-Experts architectures.">Regalado & Co. es una práctica independiente dirigida por <em>Daniel Regalado</em> — Máster en Business Analytics por la Universidad de Miami, con foco en investigación aplicada de modelos de lenguaje y arquitecturas Mixture-of-Experts.</p>
+        <p data-es="Trabajamos con un número limitado de clientes por trimestre. Sin equipos junior, sin subcontratación, sin handoffs. Quien diagnostica es quien implementa." data-en="We work with a limited number of clients per quarter. No junior teams, no subcontracting, no handoffs. The person who diagnoses is the person who implements.">Trabajamos con un número limitado de clientes por trimestre. Sin equipos junior, sin subcontratación, sin handoffs. Quien diagnostica es quien implementa.</p>
       </div>
       <div class="credentials">
         <div>
-          <div class="mono cred-label">Formación</div>
-          <div class="cred-value">M.S. Business Analytics<br>University of Miami</div>
+          <div class="mono cred-label" data-es="Formación" data-en="Education">Formación</div>
+          <div class="cred-value" data-es="M.S. Business Analytics<br>University of Miami" data-en="M.S. Business Analytics<br>University of Miami">M.S. Business Analytics<br>University of Miami</div>
         </div>
         <div>
-          <div class="mono cred-label">Especialidad</div>
+          <div class="mono cred-label" data-es="Especialidad" data-en="Specialty">Especialidad</div>
           <div class="cred-value">LLMs · RAG · Agentes · MoE</div>
         </div>
         <div>
@@ -266,11 +292,11 @@
 
 <section id="contacto">
   <div class="container section-grid">
-    <div class="mono section-label">004 / Contacto</div>
+    <div class="mono section-label" data-es="004 / Contacto" data-en="004 / Contact">004 / Contacto</div>
     <div class="contact-block">
-      <h2 class="contact-headline">¿Listo para <em>conversar?</em></h2>
-      <a href="mailto:dxr1491@miami.edu?subject=Consulta%20—%20Regalado%20%26%20Co." class="contact-cta">Escribir → dxr1491@miami.edu</a>
-      <p class="contact-alt">También en <a href="https://www.linkedin.com/in/danielregaladocardoso" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DanielRegaladoUMiami" target="_blank" rel="noopener">GitHub</a></p>
+      <h2 class="contact-headline" data-es="¿Listo para <em>conversar?</em>" data-en="Ready to <em>talk?</em>">¿Listo para <em>conversar?</em></h2>
+      <a href="mailto:dxr1491@miami.edu?subject=Consulta%20—%20Regalado%20%26%20Co." class="contact-cta" data-es="Escribir → dxr1491@miami.edu" data-en="Write → dxr1491@miami.edu">Escribir → dxr1491@miami.edu</a>
+      <p class="contact-alt" data-es="También en <a href=&quot;https://www.linkedin.com/in/danielregaladocardoso&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LinkedIn</a> · <a href=&quot;https://github.com/DanielRegaladoUMiami&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>GitHub</a>" data-en="Also on <a href=&quot;https://www.linkedin.com/in/danielregaladocardoso&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LinkedIn</a> · <a href=&quot;https://github.com/DanielRegaladoUMiami&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>GitHub</a>">También en <a href="https://www.linkedin.com/in/danielregaladocardoso" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DanielRegaladoUMiami" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </div>
 </section>
@@ -278,9 +304,39 @@
 <footer>
   <div class="footer-inner">
     <span>Regalado & Co. — MMXXVI</span>
-    <span>Miami · LATAM</span>
+    <span data-es="Miami · LATAM" data-en="Miami · Latin America">Miami · LATAM</span>
   </div>
 </footer>
+
+<script>
+(function() {
+  var META_DESC = {
+    es: 'Regalado & Co. — práctica independiente de inteligencia artificial aplicada. Talleres in-company, consultoría e implementación de LLMs, RAG y agentes para empresas en Latinoamérica.',
+    en: 'Regalado & Co. — independent practice in applied artificial intelligence. In-company workshops, consulting and implementation of LLMs, RAG and agents for companies across Latin America.'
+  };
+  function setLang(lang) {
+    if (lang !== 'es' && lang !== 'en') lang = 'es';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(function(el) {
+      var val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+    var meta = document.getElementById('meta-desc');
+    if (meta) meta.setAttribute('content', META_DESC[lang]);
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var initial = saved || ((navigator.language || 'es').toLowerCase().indexOf('en') === 0 ? 'en' : 'es');
+  setLang(initial);
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.addEventListener('click', function() { setLang(b.getAttribute('data-lang')); });
+  });
+})();
+</script>
 
 </body>
 </html>
