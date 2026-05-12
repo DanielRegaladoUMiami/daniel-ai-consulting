@@ -3,448 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel Regalado | Consultoría AI para Empresas en LATAM</title>
-<meta name="description" content="Implementación práctica de inteligencia artificial para empresas en Centroamérica. Talleres in-company, consultoría e implementación de soluciones con LLMs, RAG y agentes inteligentes.">
+<title>Regalado & Co. — AI Practice · LATAM</title>
+<meta name="description" content="Regalado & Co. — práctica independiente de inteligencia artificial aplicada. Talleres in-company, consultoría e implementación de LLMs, RAG y agentes para empresas en Latinoamérica.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --bg-elev: #12121a;
-    --bg-card: #161620;
-    --border: #1f1f2e;
-    --text: #f5f5f7;
-    --text-dim: #a1a1aa;
-    --text-muted: #71717a;
-    --accent: #f97316;
-    --accent-hover: #fb923c;
-    --gradient: linear-gradient(135deg, #f97316 0%, #ec4899 50%, #8b5cf6 100%);
+    --bg: #f5f1e8;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a48;
+    --ink-faint: #8a8a86;
+    --rule: #1a1a1a;
+    --rule-soft: #d9d3c2;
+    --accent: #b8341a;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
     background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    backdrop-filter: blur(12px);
-    background: rgba(10, 10, 15, 0.7);
-    border-bottom: 1px solid var(--border);
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0;
+    position: sticky; top: 0;
+    background: var(--bg);
+    z-index: 50;
   }
-  .nav-inner {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px 24px; max-width: 1100px; margin: 0 auto;
+  .header-inner {
+    display: flex; justify-content: space-between; align-items: baseline;
+    max-width: 1200px; margin: 0 auto; padding: 0 32px;
   }
-  .logo { font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
-  .logo span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text); }
-  .nav-cta {
-    background: var(--text); color: var(--bg) !important; padding: 8px 16px;
-    border-radius: 8px; font-weight: 600;
-  }
-  .nav-cta:hover { background: var(--accent-hover); }
-  @media (max-width: 640px) { .nav-links a:not(.nav-cta) { display: none; } }
+  .brand { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+  .brand-dot { display: inline-block; width: 6px; height: 6px; background: var(--accent); margin: 0 8px 1px 8px; vertical-align: middle; }
+  .header-nav { display: flex; gap: 32px; }
+  .header-nav a { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  @media (max-width: 720px) { .header-nav a:not(.contact-link) { display: none; } }
 
   /* HERO */
-  .hero { padding: 160px 0 100px; position: relative; }
-  .hero::before {
-    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 800px; background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 60%);
-    pointer-events: none; z-index: 0;
+  .hero { padding: 120px 0 80px; border-bottom: 1px solid var(--rule); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 64px;
+    align-items: start;
   }
-  .hero-content { position: relative; z-index: 1; text-align: center; max-width: 820px; margin: 0 auto; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--bg-card); border: 1px solid var(--border);
-    padding: 6px 14px; border-radius: 999px; font-size: 13px; color: var(--text-dim);
-    margin-bottom: 28px;
-  }
-  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .hero-label { padding-top: 14px; color: var(--ink-soft); }
   h1 {
-    font-size: clamp(40px, 6vw, 68px); font-weight: 800;
-    letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 24px;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
   }
-  h1 .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  h1 em { font-style: italic; font-weight: 300; }
   .hero-sub {
-    font-size: clamp(17px, 2vw, 20px); color: var(--text-dim);
-    max-width: 620px; margin: 0 auto 40px;
+    margin-top: 40px;
+    max-width: 640px;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--ink-soft);
   }
-  .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 24px; border-radius: 10px; font-weight: 600; font-size: 15px;
-    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+  .hero-meta {
+    margin-top: 56px;
+    display: flex; gap: 48px; flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule-soft);
   }
-  .btn-primary { background: var(--text); color: var(--bg); }
-  .btn-primary:hover { background: var(--accent); color: var(--text); transform: translateY(-1px); }
-  .btn-secondary {
-    background: var(--bg-card); color: var(--text); border: 1px solid var(--border);
-  }
-  .btn-secondary:hover { border-color: var(--text-dim); }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { color: var(--ink-faint); }
+  .meta-value { font-size: 16px; }
 
-  /* TRUST */
-  .trust {
-    padding: 60px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    background: var(--bg-elev);
+  /* SECTION */
+  section { border-bottom: 1px solid var(--rule); padding: 80px 0; }
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 64px;
   }
-  .trust-label {
-    text-align: center; color: var(--text-muted); font-size: 13px;
-    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 28px;
+  @media (max-width: 860px) { .section-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .section-label { color: var(--ink-soft); padding-top: 4px; }
+  .section-title {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
   }
-  .trust-logos {
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;
-    color: var(--text-dim); font-weight: 600; font-size: 15px;
-  }
-  .trust-logos span { opacity: 0.7; }
+  .section-title em { font-style: italic; font-weight: 300; }
 
-  /* SECTIONS */
-  section { padding: 100px 0; }
-  .section-header { text-align: center; max-width: 700px; margin: 0 auto 64px; }
-  .section-tag {
-    color: var(--accent); font-size: 13px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px;
+  /* SERVICES */
+  .service {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule-soft);
+    align-items: start;
   }
-  h2 {
-    font-size: clamp(32px, 4vw, 48px); font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 20px;
-  }
-  .section-sub { color: var(--text-dim); font-size: 17px; }
-
-  /* SERVICES GRID */
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .service-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 32px; transition: all 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .service-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--gradient); opacity: 0; transition: opacity 0.3s;
-  }
-  .service-card:hover {
-    border-color: rgba(249, 115, 22, 0.3); transform: translateY(-4px);
-  }
-  .service-card:hover::before { opacity: 1; }
-  .service-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    background: rgba(249, 115, 22, 0.1); display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px; font-size: 22px;
-  }
-  .service-card h3 {
-    font-size: 20px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em;
-  }
-  .service-card p { color: var(--text-dim); font-size: 15px; margin-bottom: 16px; }
-  .service-features { list-style: none; }
-  .service-features li {
-    color: var(--text-dim); font-size: 14px; padding: 4px 0 4px 22px; position: relative;
-  }
-  .service-features li::before {
-    content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 600;
-  }
+  .service:last-child { border-bottom: 1px solid var(--rule-soft); }
+  @media (max-width: 720px) { .service { grid-template-columns: 60px 1fr; } .service-desc { grid-column: 1 / -1; } }
+  .service-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-faint); padding-top: 8px; }
+  .service-name { font-size: 26px; line-height: 1.15; letter-spacing: -0.015em; }
+  .service-name em { font-style: italic; font-weight: 300; }
+  .service-desc { color: var(--ink-soft); font-size: 17px; line-height: 1.55; }
 
   /* ABOUT */
-  .about {
-    background: var(--bg-elev); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-  }
-  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
-  .about-text h2 { margin-bottom: 24px; }
-  .about-text p { color: var(--text-dim); font-size: 16px; margin-bottom: 16px; }
-  .stats {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 32px;
-  }
-  .stat {
-    background: var(--bg-card); border: 1px solid var(--border);
-    padding: 24px; border-radius: 12px;
-  }
-  .stat-num { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
-  .stat-num .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .stat-label { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
-  .skills-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 32px;
-  }
-  .skills-card h4 {
-    font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em;
-    color: var(--text-muted); margin-bottom: 20px;
-  }
-  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-pill {
-    background: var(--bg-elev); border: 1px solid var(--border);
-    padding: 6px 12px; border-radius: 8px; font-size: 13px;
-    color: var(--text-dim); font-family: 'JetBrains Mono', monospace;
-  }
-
-  /* PROCESS */
-  .process-steps {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  .about-body { font-size: 22px; line-height: 1.45; color: var(--ink); max-width: 720px; }
+  .about-body p + p { margin-top: 24px; }
+  .about-body em { font-style: italic; }
+  .credentials {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule-soft);
   }
-  .step {
-    text-align: left; padding: 28px;
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
-  }
-  .step-num {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    color: var(--accent); margin-bottom: 12px;
-  }
-  .step h4 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-  .step p { color: var(--text-dim); font-size: 14px; }
+  .cred-label { color: var(--ink-faint); margin-bottom: 6px; }
+  .cred-value { font-size: 17px; line-height: 1.3; }
 
-  /* CTA */
-  .cta-section { padding: 120px 0; text-align: center; position: relative; }
-  .cta-section::before {
-    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 700px; height: 400px;
-    background: radial-gradient(ellipse, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
-    pointer-events: none;
+  /* CONTACT */
+  .contact-block { max-width: 720px; }
+  .contact-headline {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 40px;
   }
-  .cta-section > * { position: relative; z-index: 1; }
-  .cta-section h2 { max-width: 640px; margin: 0 auto 20px; }
-  .cta-section p { color: var(--text-dim); font-size: 18px; max-width: 540px; margin: 0 auto 40px; }
+  .contact-headline em { font-style: italic; font-weight: 300; }
+  .contact-cta {
+    display: inline-block;
+    border: 1.5px solid var(--ink);
+    padding: 18px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+  .contact-cta:hover { background: var(--ink); color: var(--bg); }
+  .contact-alt {
+    margin-top: 32px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+  .contact-alt a { border-bottom: 1px solid var(--ink-faint); }
 
   /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border); padding: 40px 0; text-align: center;
-    color: var(--text-muted); font-size: 14px;
-  }
-  footer a { color: var(--text-dim); text-decoration: none; margin: 0 12px; }
-  footer a:hover { color: var(--text); }
-
-  /* ANIMATIONS */
-  .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  footer { padding: 32px 0; font-size: 13px; color: var(--ink-faint); }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .footer-inner span { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="logo">Daniel Regalado <span>| AI Consulting</span></div>
-    <div class="nav-links">
-      <a href="#servicios">Servicios</a>
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#contacto" class="nav-cta">Hablemos</a>
-    </div>
+<header>
+  <div class="header-inner">
+    <div class="brand">Regalado<span class="brand-dot"></span>Co.</div>
+    <nav class="header-nav">
+      <a href="#practica">Práctica</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#contacto" class="contact-link">Contacto</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="badge"><span class="badge-dot"></span> Disponible para nuevos proyectos · Q2 2026</div>
-      <h1>AI práctica para empresas que quieren <span class="gradient-text">resultados, no demos.</span></h1>
-      <p class="hero-sub">Ayudo a empresas en Centroamérica y LATAM a implementar inteligencia artificial: desde capacitación a equipos hasta soluciones a medida con LLMs, RAG y agentes inteligentes.</p>
-      <div class="hero-cta">
-        <a href="#contacto" class="btn btn-primary">Agenda una llamada →</a>
-        <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST -->
-<div class="trust">
-  <div class="container">
-    <div class="trust-label">Experiencia previa con</div>
-    <div class="trust-logos">
-      <span>Central America Bottling Corp</span>
-      <span>Ambev (AB InBev)</span>
-      <span>Spectrum</span>
-      <span>University of Miami</span>
-    </div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="servicios">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Servicios</div>
-      <h2>De la idea a producción, sin humo.</h2>
-      <p class="section-sub">Cuatro formatos diseñados para encontrarte donde estés: explorando, capacitando o construyendo.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="service-icon">🎓</div>
-        <h3>Talleres In-Company</h3>
-        <p>Capacitamos a tus equipos en AI aplicada a sus tareas reales. Salen del taller usando las herramientas, no solo entendiéndolas.</p>
-        <ul class="service-features">
-          <li>1 a 3 días, hands-on</li>
-          <li>Personalizado por industria</li>
-          <li>Hasta 15 personas por grupo</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <h3>AI Assessment</h3>
-        <p>Auditamos tus procesos e identificamos los 3-5 casos de uso con mayor retorno. Sales con un roadmap claro y priorizado.</p>
-        <ul class="service-features">
-          <li>2-3 semanas de duración</li>
-          <li>Entregable ejecutivo</li>
-          <li>Roadmap accionable</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <h3>Implementación AI</h3>
-        <p>Construimos la solución específica: chatbot interno, agente de ventas, automatización de procesos, análisis con LLMs.</p>
-        <ul class="service-features">
-          <li>POC en 4-6 semanas</li>
-          <li>Stack moderno (Claude, OpenAI, RAG)</li>
-          <li>Escalable a producción</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🎤</div>
-        <h3>Charlas & Keynotes</h3>
-        <p>Para tu evento corporativo, kickoff anual o conferencia de industria. Charlas claras, sin tecnicismos innecesarios.</p>
-        <ul class="service-features">
-          <li>30 a 60 minutos</li>
-          <li>Material personalizado</li>
-          <li>Q&A interactivo</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="sobre-mi" class="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-tag">Sobre mí</div>
-        <h2>Tecnología explicada en lenguaje de negocio.</h2>
-        <p>Soy Daniel Regalado. Tengo una maestría en Business Analytics por la University of Miami y una formación previa en ingeniería y ciencia de datos en Guatemala.</p>
-        <p>He trabajado en grupos corporativos como Central America Bottling Corp, Ambev (AB InBev) y Spectrum, donde construí dashboards, modelos predictivos y procesos de analítica para áreas comerciales y operativas.</p>
-        <p>Hoy combino ese contexto de negocio con experiencia técnica en LLMs, RAG, LangChain, MCP y agentes inteligentes para ayudar a empresas a aterrizar la AI más allá del hype.</p>
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-num"><span class="gradient-text">5+</span></div>
-            <div class="stat-label">años en analítica corporativa</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num"><span class="gradient-text">2</span></div>
-            <div class="stat-label">maestrías (US y LATAM)</div>
-          </div>
+  <div class="container hero-grid">
+    <div class="mono hero-label">001 / Índice</div>
+    <div>
+      <h1>Inteligencia<br>artificial aplicada,<br><em>sin teatro.</em></h1>
+      <p class="hero-sub">Práctica independiente que ayuda a empresas en Latinoamérica a implementar LLMs, RAG y agentes en operaciones reales — no demos, no pilotos eternos, no PowerPoints.</p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="mono meta-label">Fundado</span>
+          <span class="meta-value">2026 — Miami, FL</span>
         </div>
-      </div>
-      <div class="skills-card">
-        <h4>Stack técnico</h4>
-        <div class="skills-list">
-          <span class="skill-pill">Claude</span>
-          <span class="skill-pill">OpenAI API</span>
-          <span class="skill-pill">LangChain</span>
-          <span class="skill-pill">LangGraph</span>
-          <span class="skill-pill">RAG</span>
-          <span class="skill-pill">MCP</span>
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">Snowflake</span>
-          <span class="skill-pill">Databricks</span>
-          <span class="skill-pill">GCP</span>
-          <span class="skill-pill">Power BI</span>
-          <span class="skill-pill">Tableau</span>
-          <span class="skill-pill">ChromaDB</span>
-          <span class="skill-pill">Hugging Face</span>
-          <span class="skill-pill">Docker</span>
+        <div class="meta-item">
+          <span class="mono meta-label">Mercado</span>
+          <span class="meta-value">LATAM · Centroamérica</span>
+        </div>
+        <div class="meta-item">
+          <span class="mono meta-label">Idiomas</span>
+          <span class="meta-value">Español · Inglés</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="proceso">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Cómo trabajamos</div>
-      <h2>Un proceso claro, sin sorpresas.</h2>
-    </div>
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-num">01 · DISCOVERY</div>
-        <h4>Llamada inicial</h4>
-        <p>30 minutos para entender tu contexto, retos y oportunidades. Sin costo, sin compromiso.</p>
+<section id="practica">
+  <div class="container section-grid">
+    <div class="mono section-label">002 / Práctica</div>
+    <div>
+      <h2 class="section-title">Tres formas de <em>trabajar juntos.</em></h2>
+
+      <div class="service">
+        <div class="service-num">— 01</div>
+        <div class="service-name">Talleres <em>in&#8209;company</em></div>
+        <div class="service-desc">Formación práctica para equipos técnicos y de negocio. De prompt engineering aplicado a arquitecturas RAG en producción. Duración: 1 a 3 días, en sus oficinas.</div>
       </div>
-      <div class="step">
-        <div class="step-num">02 · PROPUESTA</div>
-        <h4>Diseño a medida</h4>
-        <p>Te envío una propuesta concreta: alcance, entregables, tiempos y precio fijo.</p>
+
+      <div class="service">
+        <div class="service-num">— 02</div>
+        <div class="service-name">Consultoría <em>estratégica</em></div>
+        <div class="service-desc">Diagnóstico de oportunidades de IA en sus procesos. Priorización por ROI, no por novedad. Entrega un roadmap ejecutable de 90 días con métricas claras.</div>
       </div>
-      <div class="step">
-        <div class="step-num">03 · EJECUCIÓN</div>
-        <h4>Trabajo iterativo</h4>
-        <p>Avances semanales, demos en vivo y ajustes sobre la marcha. Sin cajas negras.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04 · ENTREGA</div>
-        <h4>Resultado + handoff</h4>
-        <p>Entrega final, capacitación a tu equipo y soporte post-implementación.</p>
+
+      <div class="service">
+        <div class="service-num">— 03</div>
+        <div class="service-name">Implementación <em>técnica</em></div>
+        <div class="service-desc">Construcción de soluciones a medida: pipelines RAG, agentes verticales, integraciones con su stack. Código suyo, sin lock-in. Entrega en semanas, no trimestres.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contacto">
-  <div class="container">
-    <div class="section-tag">Contacto</div>
-    <h2>Conversemos sobre tu proyecto.</h2>
-    <p>Cuéntame qué reto quieres resolver. Respondo dentro de las próximas 24 horas hábiles.</p>
-    <div class="hero-cta">
-      <a href="mailto:dxr1491@miami.edu?subject=Consulta%20AI%20Consulting" class="btn btn-primary">Escríbeme un correo →</a>
-      <a href="https://www.linkedin.com/in/danielregaladocardoso" class="btn btn-secondary" target="_blank">Conectar en LinkedIn</a>
+<section id="estudio">
+  <div class="container section-grid">
+    <div class="mono section-label">003 / Estudio</div>
+    <div>
+      <h2 class="section-title">Un estudio, <em>no una agencia.</em></h2>
+      <div class="about-body">
+        <p>Regalado & Co. es una práctica independiente dirigida por <em>Daniel Regalado</em> — Máster en Business Analytics por la Universidad de Miami, con foco en investigación aplicada de modelos de lenguaje y arquitecturas Mixture-of-Experts.</p>
+        <p>Trabajamos con un número limitado de clientes por trimestre. Sin equipos junior, sin subcontratación, sin handoffs. Quien diagnostica es quien implementa.</p>
+      </div>
+      <div class="credentials">
+        <div>
+          <div class="mono cred-label">Formación</div>
+          <div class="cred-value">M.S. Business Analytics<br>University of Miami</div>
+        </div>
+        <div>
+          <div class="mono cred-label">Especialidad</div>
+          <div class="cred-value">LLMs · RAG · Agentes · MoE</div>
+        </div>
+        <div>
+          <div class="mono cred-label">Open Source</div>
+          <div class="cred-value">chartmind · moe-backward</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="container section-grid">
+    <div class="mono section-label">004 / Contacto</div>
+    <div class="contact-block">
+      <h2 class="contact-headline">¿Listo para <em>conversar?</em></h2>
+      <a href="mailto:dxr1491@miami.edu?subject=Consulta%20—%20Regalado%20%26%20Co." class="contact-cta">Escribir → dxr1491@miami.edu</a>
+      <p class="contact-alt">También en <a href="https://www.linkedin.com/in/danielregaladocardoso" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DanielRegaladoUMiami" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <p>© 2026 Daniel Regalado Cardoso · Miami, FL · Ciudad de Guatemala</p>
-    <p style="margin-top: 12px;">
-      <a href="mailto:dxr1491@miami.edu">Email</a> ·
-      <a href="https://www.linkedin.com/in/danielregaladocardoso" target="_blank">LinkedIn</a> ·
-      <a href="https://danielregaladoumiami.github.io/portfolio" target="_blank">Portfolio técnico</a>
-    </p>
+  <div class="footer-inner">
+    <span>Regalado & Co. — MMXXVI</span>
+    <span>Miami · LATAM</span>
   </div>
 </footer>
-
-<script>
-  // Smooth fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('section').forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-  });
-</script>
 
 </body>
 </html>
